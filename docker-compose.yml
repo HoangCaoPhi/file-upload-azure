@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  fileuploadazure:
+    image: ${DOCKER_REGISTRY-}fileuploadazure
+    build:
+      context: .
+      dockerfile: FileUploadAzure/Dockerfile
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite
+    container_name: "azurite"
+    hostname: azurite
+    restart: always
+    ports:
+      - "10000:10000"
+      - "10001:10001"
+      - "10002:10002"
