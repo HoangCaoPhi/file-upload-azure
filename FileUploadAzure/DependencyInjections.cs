@@ -5,6 +5,11 @@ namespace FileUploadAzure;
 
 public static class DependencyInjections
 {
+    public static void AddServices(this IServiceCollection services)
+    {
+        services.AddScoped<IStorageService, AzureBlobStorageService>();
+    }
+
     public static void AddEndpoints(this IServiceCollection services)
     {
         var assembly = typeof(IAssemblyMarker).Assembly;
