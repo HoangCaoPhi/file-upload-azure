@@ -8,7 +8,7 @@ public class DeleteEndpoint : IEndpoint
     {
         app.MapDelete("files/{fileId}", async (string fileId, IStorageService storageService) =>
         {
-            await storageService.DeleteAsync(fileId);
+            await storageService.DeleteAsync(fileId, StorageContainer.Temp);
             return Results.NoContent;
         })
        .WithTags("Files");

@@ -8,7 +8,7 @@ public class GetOneEndpoint : IEndpoint
     {
         app.MapGet("files/{fileId}", async (string fileId, IStorageService storageService) =>
         {
-            FileResponse fileResponse = await storageService.DownloadAsync(fileId);
+            FileResponse fileResponse = await storageService.DownloadAsync(fileId, StorageContainer.Temp);
             return Results.File(fileResponse.Stream, fileResponse.ContentType);
         })
         .WithTags("Files");

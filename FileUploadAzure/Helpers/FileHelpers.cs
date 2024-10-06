@@ -48,10 +48,9 @@ public static class FileHelpers
     {
         var trustedFileNameForDisplay = WebUtility.HtmlEncode(formFile.FileName);
 
-        if (formFile.Length > sizeLimit)
+        if (formFile.Length > sizeLimit * 1048576)
         {
-            var megabyteSizeLimit = sizeLimit / 1048576;
-            throw new Exception($"Your file exceeds the maximum size limit of {megabyteSizeLimit} MB. Please reduce the file size and try again.");
+            throw new Exception($"Your file exceeds the maximum size limit of {sizeLimit} MB. Please reduce the file size and try again.");
         }
  
         if (stream.Length == 0)
