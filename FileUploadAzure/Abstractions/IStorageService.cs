@@ -1,4 +1,6 @@
-﻿namespace FileUploadAzure.Abstractions;
+﻿using Azure.Storage.Blobs;
+
+namespace FileUploadAzure.Abstractions;
 
 public interface IStorageService
 {
@@ -11,4 +13,8 @@ public interface IStorageService
     Task CopyTempToAsync(string fileId, StorageContainer container, CancellationToken cancellationToken = default);
 
     Task<Uri?> GetFileUriAsync(string fileId, StorageContainer container, CancellationToken cancellationToken = default);
+
+    Task<Uri> CreateServiceSASContainer(BlobContainerClient containerClient, string storedPolicyName = null);
+
+    Task<Uri> CreateServiceSASBlob(BlobClient blobClient, string storedPolicyName = null);
 }
